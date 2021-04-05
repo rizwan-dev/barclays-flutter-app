@@ -1,11 +1,9 @@
-import 'package:barclays_app/bloc/AccountSummaryEvent.dart';
+import 'package:barclays_app/components/LoginScreen.dart';
 import 'package:barclays_app/repo/APIClient.dart';
 import 'package:barclays_app/repo/AccountSummaryRepository.dart';
-import 'package:barclays_app/widgets/SummaryScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
-import 'bloc/AccountSummaryBloc.dart';
 import 'bloc/SimpleBlocObserver.dart';
 
 void main() {
@@ -18,31 +16,16 @@ void main() {
     ),
   );
 
-  runApp(MyApp(accountSummaryRepository: accountSummaryRepository));
+  runApp(MaterialApp(
+    title: 'Welcome to Flutter',
+    theme: ThemeData(
+        backgroundColor: Colors.white,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.blue[900],
+          ),
+        )),
+    home: LoginScreen(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  final AccountSummaryRepository accountSummaryRepository;
-
-  MyApp({Key key, this.accountSummaryRepository}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-
-    return MaterialApp(
-      title: 'Welcome to Flutter',
-      theme: ThemeData(
-          primaryColor: Colors.white,
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.blue[900],
-            ),
-          )),
-      home: BlocProvider(
-        child: SummaryScreen(),
-        create: (context) => AccountSummaryBloc(
-            accountSummaryRepository: accountSummaryRepository),
-      ),
-    );
-  }
-}

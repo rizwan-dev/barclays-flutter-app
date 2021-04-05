@@ -68,7 +68,8 @@ class PaymentTile extends StatelessWidget {
                   onPrimary: Colors.blue[700],
                   padding: EdgeInsets.all(14.0),
                 ),
-              )
+              ),
+
             ],
           ),
         ),
